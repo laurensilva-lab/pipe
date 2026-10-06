@@ -1,0 +1,9 @@
+{
+  "name": "pipe-deco-juegos",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vercel/blob": "^1.0.0",
+    "i": "^0.3.7"
+  }
+}
