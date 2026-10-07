@@ -16,7 +16,7 @@ JavaScript puro (módulos ES) + API en Vercel para el panel `/admin`.
 4. Redeploy y entrá a `/admin`.
 
 ## Antes de salir al aire
-Reemplazá `TU-DOMINIO.com` por tu dominio real en: `public/index.html`, `public/privacidad.html`, `public/robots.txt` y `public/sitemap.xml`.
+El dominio configurado es `pipe-rho-self.vercel.app`. Si más adelante usás un dominio propio, reemplazalo en: `public/index.html`, `public/privacidad.html`, `public/robots.txt` y `public/sitemap.xml`.
 
 ## Seguridad incluida
 - CSP estricta, HSTS, anti-clickjacking, nosniff, Referrer/Permissions-Policy (`vercel.json`).

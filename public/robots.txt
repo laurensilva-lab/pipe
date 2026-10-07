@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://TU-DOMINIO.com/sitemap.xml
+Sitemap: https://pipe-rho-self.vercel.app/sitemap.xml
