@@ -25,4 +25,8 @@ Reemplazá `TU-DOMINIO.com` por tu dominio real en: `public/index.html`, `public
 - Subidas validadas (solo JPG real, máx. 4 MB, 12 fotos), categorías y URLs validadas, textos saneados.
 - Recomendado: activar 2FA en GitHub y Vercel, y una regla de Rate Limit en Vercel Firewall para `/api/*`.
 
-Probar en tu PC: `npm i -g vercel && npm i && vercel dev`.
+## Probar en tu PC
+1. Instalá Node.js (nodejs.org) y abrí una terminal dentro de la carpeta del proyecto.
+2. `npm install`
+3. `npm run dev` → abrí http://localhost:3000 (sitio completo; el panel /admin no funciona acá).
+4. Para probar también el panel y la API: `npm run dev:api` (te pide iniciar sesión en Vercel y vincular el proyecto).
