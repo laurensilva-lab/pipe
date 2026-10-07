@@ -2,12 +2,10 @@
 export const SITE = {
   name: 'Pipe Deco Juegos',
   whatsapp: '59892060185',
-  phoneLabel: '+598 92 060 185',
   instagram: 'https://www.instagram.com/pipe.decojuegos/',
   credit: {
     name: 'Lala Serena',
     portfolio: 'https://nice-elements-205697.framer.app/',
-    portfolioLabel: 'Lauren Silva',
   },
 };
 

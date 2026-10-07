@@ -8,8 +8,8 @@ export const Contact = () => `
     <h2>Contanos tu idea y la hacemos realidad</h2>
     <p class="lead">Escribinos y te armamos un presupuesto a medida.</p>
     <div class="hero-actions">
-      <a class="btn light" href="${waLink('Hola! Quiero cotizar un evento')}" target="_blank" rel="noopener">WhatsApp ${SITE.phoneLabel}</a>
-      <a class="btn ghost-light" href="${SITE.instagram}" target="_blank" rel="noopener">Instagram @pipe.decojuegos</a>
+      <a class="btn light" href="${waLink('Hola! Quiero cotizar un evento')}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn ghost-light" href="${SITE.instagram}" target="_blank" rel="noopener">Instagram</a>
     </div>
   </div>
 </section>`;
