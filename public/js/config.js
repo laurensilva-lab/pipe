@@ -10,10 +10,10 @@ export const SITE = {
 };
 
 export const CATEGORIES = [
-  { id: 'bodas',       label: 'Bodas',              icon: '💍', text: 'Ambientaciones elegantes para el día más importante.' },
-  { id: 'cumpleanos',  label: 'Cumpleaños',         icon: '🎂', text: 'Temáticas personalizadas para chicos y grandes.' },
-  { id: 'baby-shower', label: 'Baby Shower',        icon: '🍼', text: 'Dulces detalles para recibir a tu bebé.' },
-  { id: 'juegos',      label: 'Alquiler de Juegos', icon: '🎪', text: 'Juegos y entretenimiento para tu evento.' },
+  { id: 'bodas',       label: 'Bodas',              img: '/assets/icons/bodas.webp', text: 'Ambientaciones elegantes para el día más importante.' },
+  { id: 'cumpleanos',  label: 'Cumpleaños',         img: '/assets/icons/cumpleanos.webp', text: 'Temáticas personalizadas para chicos y grandes.' },
+  { id: 'baby-shower', label: 'Baby Shower',        img: '/assets/icons/baby-shower.webp', text: 'Dulces detalles para recibir a tu bebé.' },
+  { id: 'juegos',      label: 'Alquiler de Juegos', img: '/assets/icons/juegos.webp', text: 'Juegos y entretenimiento para tu evento.' },
 ];
 
 // Fotos del collage principal
