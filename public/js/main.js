@@ -22,7 +22,7 @@ document.addEventListener('click', (e) => {
   const filter = e.target.closest('[data-filter]');
   if (filter) { state.filter = filter.dataset.filter; renderGallery(); return; }
   const work = e.target.closest('[data-work]');
-  if (work) openLightbox(state.works.find((w) => w.id === work.dataset.work));
+  if (work) openLightbox(state.works.find((w) => w.id === work.dataset.work), Number(work.dataset.i) || 0);
 });
 
 state.works = await loadWorks();

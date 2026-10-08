@@ -1,7 +1,7 @@
 import { esc } from '../utils.js';
 
-export function openLightbox(work) {
-  let i = 0;
+export function openLightbox(work, start = 0) {
+  let i = Math.min(Math.max(0, start), work.images.length - 1);
   const opener = document.activeElement;
   const el = document.createElement('div');
   el.className = 'lightbox';

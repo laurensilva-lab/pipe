@@ -13,12 +13,18 @@ export function Gallery(state) {
   // Una sola imagen grande + una tira de miniaturas: la galería ocupa siempre el mismo alto, sin importar cuántos trabajos haya.
   const showcase = first ? `
     <div class="showcase" data-showcase>
-      <button class="stage" type="button" data-work="${esc(first.id)}" aria-label="Ver fotos de ${esc(first.title)}">
-        <img class="stage-img" src="${esc(first.images[0])}" alt="${esc(first.title)}" decoding="async">
-        <span class="count" data-count>1 / ${list.length}</span>
-        <span class="badge" data-badge ${first.images.length > 1 ? '' : 'hidden'}>${first.images.length} fotos</span>
-        <span class="work-info"><small data-cat>${esc(categoryLabel(first.category))}</small><strong data-title>${esc(first.title)}</strong><span data-desc>${esc(first.description || '')}</span></span>
-      </button>
+      <div class="stage-wrap">
+        <div class="stage">
+          <div class="slides" data-slides tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Fotos de ${esc(first.title)}"></div>
+          <span class="count" data-count>1 / ${list.length}</span>
+          <span class="badge" data-badge hidden></span>
+          <button class="slide-arrow prev" type="button" data-nav="-1" aria-label="Foto anterior" hidden>‹</button>
+          <button class="slide-arrow next" type="button" data-nav="1" aria-label="Foto siguiente" hidden>›</button>
+          <button class="expand" type="button" data-work="${esc(first.id)}" data-i="0" aria-label="Ver foto en pantalla completa"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
+          <span class="work-info"><small data-cat>${esc(categoryLabel(first.category))}</small><strong data-title>${esc(first.title)}</strong><span data-desc>${esc(first.description || '')}</span></span>
+        </div>
+        <div class="dots" data-dots aria-hidden="true"></div>
+      </div>
       ${list.length > 1 ? `
       <div class="strip" data-strip role="group" aria-label="Elegí un trabajo">
         ${list.map((w, i) => `<button class="thumb${i ? '' : ' active'}" type="button" data-pick="${i}" aria-label="${esc(w.title)}"${i ? '' : ' aria-current="true"'}><img src="${esc(w.thumb || w.images[0])}" alt="" width="72" height="90" loading="lazy" decoding="async"></button>`).join('')}
