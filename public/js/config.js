@@ -16,11 +16,11 @@ export const CATEGORIES = [
   { id: 'juegos',      label: 'Alquiler de Juegos', img: '/assets/icons/juegos.webp', text: 'Juegos y entretenimiento para tu evento.' },
 ];
 
-// Fotos del collage principal
+// Fotos colgadas del inicio (la primera queda al centro)
 export const HERO_IMAGES = [
-  '/assets/works/stitch-1.jpg',
-  '/assets/works/masha-1.jpg',
-  '/assets/works/babyshower-1.jpg',
+  { src: '/assets/hero/stitch.jpg', alt: 'Arco de globos y mesa de dulces de Lilo & Stitch', caption: 'Lilo & Stitch' },
+  { src: '/assets/hero/masha.jpg', alt: 'Cumpleaños de Masha y el Oso con troncos y hongos', caption: 'Masha' },
+  { src: '/assets/hero/babyshower.jpg', alt: 'Revelación de género con conejitos y arco de globos', caption: 'Baby shower' },
 ];
 
 // "Cómo trabajamos" (editable)

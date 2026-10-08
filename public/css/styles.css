@@ -36,17 +36,38 @@ font:600 .95rem var(--font);text-decoration:none;border:2px solid var(--green);c
 }
 
 /* ===== Hero ===== */
-.hero{padding:clamp(40px,7vw,90px) 0}
-.hero .container{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-.hero h1{font-weight:800;font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.02;letter-spacing:-.03em;margin:8px 0 18px}
-.hero .lead{margin-bottom:28px}
+/* Inicio: fotos colgadas de un hilo, como en una guirnalda de fiesta */
+.hero{padding:clamp(24px,5vw,72px) 0 clamp(36px,6vw,80px);overflow-x:clip}
+.hero-grid{display:grid;gap:18px;grid-template-areas:"title" "prints" "copy"}
+.hero-title{grid-area:title}
+.hero-copy{grid-area:copy}
+.hero h1{font-weight:800;font-size:clamp(2.15rem,5.4vw + .5rem,4.1rem);line-height:1.02;letter-spacing:-.03em;margin:6px 0 0}
+.hero .lead{margin-bottom:24px}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.collage{position:relative;aspect-ratio:4/5}
-.collage img{position:absolute;object-fit:cover;box-shadow:var(--shadow);border:6px solid var(--cream)}
-.collage .a{left:0;top:0;width:78%;height:88%;border-radius:999px 999px 24px 24px}
-.collage .b{right:0;top:8%;width:42%;aspect-ratio:1;border-radius:50%}
-.collage .c{right:4%;bottom:0;width:48%;aspect-ratio:4/5;border-radius:24px}
-@media(max-width:860px){.hero .container{grid-template-columns:1fr}.collage{max-width:420px;margin:auto;width:100%}}
+.prints{grid-area:prints;position:relative;container-type:inline-size;aspect-ratio:1/.82;width:100%;max-width:520px;justify-self:center;color:#8b6b43}
+.prints::before,.prints::after{content:"";position:absolute;top:2cqw;width:3cqw;height:3cqw;border-radius:50%;background:#6b5130;box-shadow:0 .5cqw 1cqw rgba(13,40,32,.3)}
+.prints::before{left:-.8cqw}
+.prints::after{right:-.8cqw}
+.twine{position:absolute;left:0;top:0;width:100%;height:14cqw;overflow:visible}
+.print{position:absolute;margin:0;box-sizing:border-box;background:#FBF8EF;padding:1.7cqw 1.7cqw 7cqw;border-radius:3px;box-shadow:0 2cqw 5cqw rgba(13,40,32,.22);transform-origin:50% 0;transform:rotate(var(--r));animation:hang 1.5s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d)}
+.print img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.print figcaption{position:absolute;left:0;right:0;bottom:1.2cqw;text-align:center;font-family:var(--script);font-size:5.6cqw;line-height:1.1;color:var(--green)}
+.print::before{content:"";position:absolute;left:50%;top:-4.2cqw;width:3.6cqw;height:8.6cqw;translate:-50% 0;border-radius:1cqw;background:linear-gradient(90deg,#cf9f63 0 45%,#7d5428 45% 55%,#cf9f63 55%);box-shadow:0 .6cqw 1.2cqw rgba(13,40,32,.3)}
+.print.center{--r:1.2deg;--d:.05s;left:24%;width:52%;top:7.2cqw;z-index:3}
+.print.left{--r:-5deg;--d:.3s;left:0;width:40%;top:6cqw;z-index:2}
+.print.right{--r:5deg;--d:.45s;right:0;width:40%;top:6cqw;z-index:1}
+.print.left figcaption,.print.right figcaption{font-size:5cqw}
+.print.left figcaption{left:2.4cqw;right:auto;text-align:left}
+.print.right figcaption{right:2.4cqw;left:auto;text-align:right}
+.print.left,.print.right{padding-bottom:6cqw}
+@keyframes hang{from{transform:rotate(calc(var(--r) + 12deg))}55%{transform:rotate(calc(var(--r) - 3deg))}to{transform:rotate(var(--r))}}
+@media(min-width:861px){
+  .hero-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);column-gap:56px;grid-template-areas:"title prints" "copy prints"}
+  .hero-title{align-self:end}
+  .hero-copy{align-self:start}
+  .hero .lead{margin-top:18px}
+  .prints{max-width:none;justify-self:stretch}
+}
 
 /* ===== Servicios ===== */
 .cats{background:var(--green);color:var(--cream)}
