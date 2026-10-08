@@ -72,6 +72,11 @@ export default async function handler(req, res) {
     if (!authed(req)) return res.status(401).json({ error: 'No autorizado' });
     if (req.method === 'GET' && action === 'session') return res.json({ ok: true });
 
+    // Subir, publicar y eliminar necesitan el almacenamiento (Blob) conectado al proyecto
+    if ((req.method === 'POST' && action !== 'logout') || req.method === 'DELETE') {
+      if (!process.env.BLOB_READ_WRITE_TOKEN) return res.status(503).json({ error: 'Falta crear el almacenamiento de fotos (Blob) en Vercel y volver a desplegar.' });
+    }
+
     if (req.method === 'POST' && action === 'upload') {
       const buf = req.body;
       if (!Buffer.isBuffer(buf) || buf.length > MAX_IMG) return res.status(413).json({ error: 'Foto inválida o muy pesada' });
@@ -81,13 +86,13 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-      const { category, title, description, images } = req.body || {};
+      const { category, title, description, images, thumb } = req.body || {};
       const t = clean(title, 80);
       if (!CATEGORIES.some((c) => c.id === category) || !t || !Array.isArray(images) || !images.length
-        || images.length > MAX_PHOTOS || !images.every(okUrl)) return res.status(400).json({ error: 'Datos inválidos' });
+        || images.length > MAX_PHOTOS || !images.every(okUrl) || (thumb && !okUrl(thumb))) return res.status(400).json({ error: 'Datos inválidos' });
       const works = await read();
       if (works.length >= MAX_WORKS) return res.status(400).json({ error: 'Límite de trabajos alcanzado' });
-      works.push({ id: `w${Date.now()}`, category, title: t, description: clean(description, 160), images });
+      works.push({ id: `w${Date.now()}`, category, title: t, description: clean(description, 160), images, ...(thumb ? { thumb } : {}) });
       await write(works);
       return res.json({ ok: true });
     }
@@ -97,7 +102,7 @@ export default async function handler(req, res) {
       const works = await read();
       const work = works.find((w) => w.id === id);
       if (!work) return res.status(404).json({ error: 'No existe' });
-      await del(work.images);
+      await del([...work.images, ...(work.thumb ? [work.thumb] : [])]);
       await write(works.filter((w) => w.id !== id));
       return res.json({ ok: true });
     }

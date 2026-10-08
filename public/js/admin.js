@@ -24,6 +24,17 @@ async function shrink(file, max = 1600) {
   return new Promise((ok) => canvas.toBlob(ok, 'image/jpeg', 0.82));
 }
 
+// Miniatura (recorte 4:5) para la tira de la galería: pesa ~10 KB en vez de cientos
+async function thumbOf(file, w = 200, h = 250) {
+  const bmp = await createImageBitmap(file);
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  const k = Math.max(w / bmp.width, h / bmp.height), sw = w / k, sh = h / k;
+  canvas.getContext('2d').drawImage(bmp, (bmp.width - sw) / 2, (bmp.height - sh) / 2, sw, sh, 0, 0, w, h);
+  return new Promise((ok) => canvas.toBlob(ok, 'image/jpeg', 0.8));
+}
+const upload = (blob) => api('?action=upload', { method: 'POST', headers: { 'content-type': 'application/octet-stream' }, body: blob });
+
 function loginView(msg = '') {
   root.innerHTML = `
     <form class="card" id="login">
@@ -62,10 +73,12 @@ function panelView() {
       const files = [...form.elements.files.files].slice(0, 12), images = [];
       for (const [n, file] of files.entries()) {
         status.textContent = `Subiendo foto ${n + 1} de ${files.length}…`;
-        const { url } = await api('?action=upload', { method: 'POST', headers: { 'content-type': 'application/octet-stream' }, body: await shrink(file) });
+        const { url } = await upload(await shrink(file));
         images.push(url);
       }
-      await api('', json({ category: data.get('category'), title: data.get('title'), description: data.get('description'), images }));
+      let thumb;
+      try { status.textContent = 'Preparando miniatura…'; thumb = (await upload(await thumbOf(files[0]))).url; } catch (err) { if (err.status === 401) throw err; }
+      await api('', json({ category: data.get('category'), title: data.get('title'), description: data.get('description'), images, thumb }));
       form.reset(); status.textContent = '¡Publicado! ✅'; renderList();
     } catch (err) { onError(err) ?? (status.textContent = 'Error: ' + err.message); }
   };
@@ -77,7 +90,7 @@ async function renderList() {
   const works = (await fetch('/api/works').then((r) => r.json()).catch(() => [])).reverse();
   list.innerHTML = works.length ? works.map((w) => `
     <div class="admin-item">
-      <img src="${esc(w.images[0])}" alt="">
+      <img src="${esc(w.thumb || w.images[0])}" alt="">
       <div><strong>${esc(w.title)}</strong><small>${esc(categoryLabel(w.category))} · ${w.images.length} foto(s)</small></div>
       <button class="btn ghost" data-del="${esc(w.id)}">Eliminar</button>
     </div>`).join('') : '<p class="muted">Todavía no subiste trabajos desde el panel.</p>';
