@@ -12,7 +12,7 @@ export const Footer = () => `
       <a href="${waLink()}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       <a href="/privacidad">Privacidad</a>
     </nav>
-    <p class="copy">© ${new Date().getFullYear()} ${SITE.name}. Todos los derechos reservados.</p>
+    <p class="copy">© ${new Date().getFullYear()} <a class="admin-link" href="/admin" rel="nofollow">${SITE.name}</a>. Todos los derechos reservados.</p>
     <p class="copy">Creado por ${SITE.credit.name} · <a href="${SITE.credit.portfolio}" target="_blank" rel="noopener noreferrer">Portafolio</a></p>
   </div>
 </footer>
