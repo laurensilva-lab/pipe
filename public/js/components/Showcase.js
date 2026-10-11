@@ -4,6 +4,7 @@ import { esc, categoryLabel } from '../utils.js';
 const wide = matchMedia('(min-width: 900px)');          // en pantallas grandes la tira es vertical
 const calm = matchMedia('(prefers-reduced-motion: reduce)');
 let current = null;                                      // la galería activa (se reemplaza al filtrar)
+export const selectWork = (id) => current?.select(id) ?? false;   // elige un trabajo por su id (desde el carrusel del inicio)
 addEventListener('resize', () => current?.recenter());
 
 export function bindShowcase(root, list) {
@@ -123,9 +124,9 @@ export function bindShowcase(root, list) {
       const i = Math.min(thumbs.length - 1, Math.max(0, index + step));
       pick(i); thumbs[i].focus({ preventScroll: true });
     });
-    current = { recenter: () => { scrollStrip(target(index), false); goPhoto(photo); } };
+    current = { recenter: () => { scrollStrip(target(index), false); goPhoto(photo); }, select: (id) => { const k = list.findIndex((w) => w.id === id); if (k < 0) return false; pick(k, false); return true; } };
   } else {
-    current = { recenter: () => goPhoto(photo) };
+    current = { recenter: () => goPhoto(photo), select: (id) => list.some((w) => w.id === id) };
   }
 
   show(0);

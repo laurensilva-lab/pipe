@@ -16,11 +16,11 @@ export const CATEGORIES = [
   { id: 'juegos',      label: 'Alquiler de Juegos', img: '/assets/icons/juegos.webp', text: 'Juegos y entretenimiento para tu evento.' },
 ];
 
-// Fotos colgadas del inicio (la primera queda al centro)
+// Carrusel del inicio: al tocar una foto se abre ese trabajo (work = id) en la galería
 export const HERO_IMAGES = [
-  { src: '/assets/hero/stitch.jpg', alt: 'Arco de globos y mesa de dulces de Lilo & Stitch', caption: 'Lilo & Stitch' },
-  { src: '/assets/hero/masha.jpg', alt: 'Cumpleaños de Masha y el Oso con troncos y hongos', caption: 'Masha' },
-  { src: '/assets/hero/babyshower.jpg', alt: 'Revelación de género con conejitos y arco de globos', caption: 'Baby shower' },
+  { src: '/assets/hero/slide-stitch.jpg', thumb: '/assets/works/thumbs/stitch.webp', work: 's-stitch', caption: 'Lilo & Stitch', alt: 'Arco de globos y mesa de dulces de Lilo & Stitch' },
+  { src: '/assets/hero/slide-masha.jpg', thumb: '/assets/works/thumbs/masha.webp', work: 's-masha', caption: 'Masha y el Oso', alt: 'Cumpleaños de Masha y el Oso con troncos y hongos' },
+  { src: '/assets/hero/slide-babyshower.jpg', thumb: '/assets/works/thumbs/babyshower.webp', work: 's-reveal', caption: 'Baby shower', alt: 'Revelación de género con conejitos y arco de globos' },
 ];
 
 // "Cómo trabajamos" (editable)
