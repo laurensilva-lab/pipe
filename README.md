@@ -25,8 +25,14 @@ El dominio configurado es `pipe-rho-self.vercel.app`. Si más adelante usás un 
 - Subidas validadas (solo JPG real, máx. 4 MB, 12 fotos), categorías y URLs validadas, textos saneados.
 - Recomendado: activar 2FA en GitHub y Vercel, y una regla de Rate Limit en Vercel Firewall para `/api/*`.
 
-## Probar en tu PC
-1. Instalá Node.js (nodejs.org) y abrí una terminal dentro de la carpeta del proyecto.
-2. `npm install`
-3. `npm run dev` → abrí http://localhost:3000 (sitio completo; el panel /admin no funciona acá).
-4. Para probar también el panel y la API: `npm run dev:api` (te pide iniciar sesión en Vercel y vincular el proyecto).
+## Probar en tu PC (sin subir nada)
+1. Instalá [Node.js 22](https://nodejs.org) (una sola vez).
+2. Abrí una terminal dentro de la carpeta del proyecto. (`npm install` solo hace falta para el paso 4; para `npm run dev` no.)
+3. `npm run dev` y abrí **http://localhost:3000**.
+   - Al guardar un archivo, la página se recarga sola.
+   - Aplica la misma política de seguridad (CSP) que Vercel, así ves ya si algo quedaría bloqueado (por ejemplo, estilos escritos dentro de las etiquetas HTML).
+   - La API del panel no corre acá: se ven los trabajos fijos y `/admin` no puede subir fotos.
+   - Si el puerto 3000 está ocupado: `PORT=3001 npm run dev` (en Windows: `set PORT=3001 && npm run dev`).
+4. Para probar también el panel y la API: `npm run dev:vercel` (pide iniciar sesión en Vercel y vincular el proyecto). **Ojo:** usa tu almacenamiento real, lo que subas ahí queda publicado en el sitio.
+
+Para trabajar sin tocar lo publicado: `git checkout -b mis-cambios`, editá, probá con `npm run dev` y recién cuando quieras publicarlo hacé `git push`.

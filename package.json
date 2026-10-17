@@ -7,7 +7,8 @@
     "node": "22.x"
   },
   "scripts": {
-    "dev": "vercel dev"
+    "dev": "node scripts/dev.mjs",
+    "dev:vercel": "vercel dev"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.1"
