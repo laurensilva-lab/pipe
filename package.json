@@ -12,5 +12,8 @@
   },
   "dependencies": {
     "@vercel/blob": "^2.8.1"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
   }
 }
